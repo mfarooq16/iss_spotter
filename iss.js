@@ -1,5 +1,6 @@
-const request = require('request');
 // iss.js
+
+const request = require('request');
 
 /**
  * Orchestrates multiple API requests in order to determine the next 5 upcoming ISS fly overs for the user's current location.
@@ -29,8 +30,6 @@ const nextISSTimesForMyLocation = function(callback) {
   });
 };
 
-
-
 /*
  * Makes a single API request to retrieve the user's IP address.
  * Input:
@@ -38,7 +37,7 @@ const nextISSTimesForMyLocation = function(callback) {
  * Returns (via Callback):
  *   - An error, if any (nullable)
  *   - The IP address as a string (null if error). Example: "162.245.144.188"
- */
+*/
 
 const fetchMyIP = function(callback) {
   const URL = "https://api.ipify.org?format=json";
@@ -55,7 +54,6 @@ const fetchMyIP = function(callback) {
     }
   });
 };
-
 
 const fetchCoordsByIP = function(ip, callback) {
   const URL = `https://ipvigilante.com/${ip}`;
@@ -82,7 +80,7 @@ const fetchCoordsByIP = function(ip, callback) {
  *   - An error, if any (nullable)
  *   - The fly over times as an array of objects (null if error). Example:
  *     [ { risetime: 134564234, duration: 600 }, ... ]
- */
+*/
 
 const fetchISSFlyOverTimes = function(coords, callback) {
   const URL = `http://api.open-notify.org/iss-pass.json?lat=${coords.latitude}&lon=${coords.longitude}`;
